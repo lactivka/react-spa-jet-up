@@ -1,6 +1,6 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.scss';
+import * as React from 'react';
+import logo from '../../logo.svg';
+import './index.scss';
 
 const App: React.FC = () => {
   return (
