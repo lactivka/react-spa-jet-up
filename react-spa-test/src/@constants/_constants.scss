@@ -1,0 +1,9 @@
+$layout-bg: #ffffffcc;
+$header-text: #3a63b9;
+
+%layout-bg-style {
+  margin: 10px auto;
+  background: $layout-bg;
+  max-width: 1900px;
+  border-radius: 10px;
+}
