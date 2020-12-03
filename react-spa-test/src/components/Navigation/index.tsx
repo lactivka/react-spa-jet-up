@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link, Route, useLocation } from 'react-router-dom';
 import './index.scss';
 import { Tabs } from 'antd';
 import {
@@ -15,56 +16,73 @@ import Profile from 'components/Profile';
 const { TabPane } = Tabs;
 
 const Navigation: React.FC = () => {
+  const location = useLocation();
+  const currentLocation = () => location.pathname;
+
   const callback = (key: string) => {
     console.log(key);
   };
 
   return (
     <div className="navigation">
-      <Tabs size="large" centered defaultActiveKey="1" onChange={callback}>
+      <Tabs
+        size="large"
+        centered
+        activeKey={currentLocation()}
+        defaultActiveKey="/"
+        onChange={callback}
+      >
         <TabPane
           tab={
-            <span>
-              <HomeFilled />
-              Home
-            </span>
+            <Link to="/">
+              <span>
+                <HomeFilled />
+                Home
+              </span>
+            </Link>
           }
-          key="1"
+          key="/"
         >
-          <Home />
+          <Route path="/" component={Home} />
         </TabPane>
         <TabPane
           tab={
-            <span>
-              <CloudFilled />
-              Weather
-            </span>
+            <Link to="/weather">
+              <span>
+                <CloudFilled />
+                Weather
+              </span>
+            </Link>
           }
-          key="2"
+          key="/weather"
         >
-          <Weather />
+          <Route path="/weather" component={Weather} />
         </TabPane>
         <TabPane
           tab={
-            <span>
-              <ReadFilled />
-              News
-            </span>
+            <Link to="/news">
+              <span>
+                <ReadFilled />
+                News
+              </span>
+            </Link>
           }
-          key="3"
+          key="/news"
         >
-          <News />
+          <Route path="/news" component={News} />
         </TabPane>
         <TabPane
           tab={
-            <span>
-              <StarFilled />
-              Profile
-            </span>
+            <Link to="/profile">
+              <span>
+                <StarFilled />
+                Profile
+              </span>
+            </Link>
           }
-          key="4"
+          key="/profile"
         >
-          <Profile />
+          <Route path="/profile" component={Profile} />
         </TabPane>
       </Tabs>
     </div>
