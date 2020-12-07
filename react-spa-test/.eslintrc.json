@@ -24,7 +24,8 @@
   },
   "plugins": [
       "react",
-      "@typescript-eslint"
+      "@typescript-eslint",
+      "import"
   ],
   "rules": {
     "@typescript-eslint/no-namespace": "warn",

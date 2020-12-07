@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Link, Route, useLocation } from 'react-router-dom';
+import { Link, Route, useHistory, useLocation } from 'react-router-dom';
 import './index.scss';
-import { Tabs } from 'antd';
+import { message, Tabs } from 'antd';
 import {
   CloudFilled,
   HomeFilled,
@@ -12,15 +12,20 @@ import Home from 'components/Home';
 import Weather from 'components/Weather';
 import News from 'components/News';
 import Profile from 'components/Profile';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store';
 
 const { TabPane } = Tabs;
 
 const Navigation: React.FC = () => {
   const location = useLocation();
   const currentLocation = () => location.pathname;
-
+  const isAuth = useSelector((state: RootState) => state.authorization);
+  const warning = () => {
+    message.warning('To visit this page, authorize, please.');
+  };
   const callback = (key: string) => {
-    console.log(key);
+    if (key === '/profile' || key === '/weather') warning();
   };
 
   return (
@@ -47,19 +52,6 @@ const Navigation: React.FC = () => {
         </TabPane>
         <TabPane
           tab={
-            <Link to="/weather">
-              <span>
-                <CloudFilled />
-                Weather
-              </span>
-            </Link>
-          }
-          key="/weather"
-        >
-          <Route path="/weather" component={Weather} />
-        </TabPane>
-        <TabPane
-          tab={
             <Link to="/news">
               <span>
                 <ReadFilled />
@@ -73,7 +65,7 @@ const Navigation: React.FC = () => {
         </TabPane>
         <TabPane
           tab={
-            <Link to="/profile">
+            <Link to={isAuth ? '/profile' : '/login'}>
               <span>
                 <StarFilled />
                 Profile
@@ -83,6 +75,19 @@ const Navigation: React.FC = () => {
           key="/profile"
         >
           <Route path="/profile" component={Profile} />
+        </TabPane>
+        <TabPane
+          tab={
+            <Link to={isAuth ? '/weather' : '/login'}>
+              <span>
+                <CloudFilled />
+                Weather
+              </span>
+            </Link>
+          }
+          key="/weather"
+        >
+          <Route path="/weather" component={Weather} />
         </TabPane>
       </Tabs>
     </div>

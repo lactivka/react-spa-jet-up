@@ -1,7 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
+import loginFormReducer from 'reducers/loginForm';
+import authorizationReducer from 'reducers/authorization';
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    loginForm: loginFormReducer,
+    authorization: authorizationReducer,
+  },
 });
 
 export type AppDispatch = typeof store.dispatch;

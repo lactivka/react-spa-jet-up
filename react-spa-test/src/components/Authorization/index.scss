@@ -1,0 +1,33 @@
+.login-form {
+  max-width: 900px;
+  width: 60%;
+  margin: auto;
+  padding-top: 90px;
+  & .exit-item {
+    justify-content: flex-end;
+  }
+  & .login-form-submit-button {
+    width: 100%;
+  }
+  & .login-form-exit-button {
+    margin-bottom: 20px;
+  }
+}
+
+@media(max-width: 575px) {
+  .login-form {
+    & .exit-item {
+      justify-content: unset;
+    }
+  }
+  .submit-item {
+    & .ant-form-item-control {
+      margin: 0;
+    }
+  }
+  .checkbox-item {
+    & .ant-form-item-control {
+      margin: 0;
+    }
+  }
+}
