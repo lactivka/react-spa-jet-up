@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link, Route, useHistory, useLocation } from 'react-router-dom';
 import './index.scss';
-import { message, Tabs } from 'antd';
+import { Tabs } from 'antd';
 import {
   CloudFilled,
   HomeFilled,

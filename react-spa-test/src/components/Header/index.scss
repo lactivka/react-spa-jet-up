@@ -4,6 +4,7 @@ header {
   @extend %layout-bg-style;
   display: flex;
   justify-content: center;
+  flex-wrap: nowrap;
 }
 
 .app-header {
@@ -19,4 +20,16 @@ header {
 .logIn-btn {
   align-self: center;
   margin-right: 15px;
+}
+
+@media(max-width: 575px) {
+  header {
+    flex-wrap: wrap;
+  }
+  .app-header {
+    font-size: 30px;
+  }
+  .logIn-btn {
+    margin: 10px 0;
+  }
 }
