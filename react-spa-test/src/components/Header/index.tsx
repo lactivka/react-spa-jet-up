@@ -20,11 +20,14 @@ const Header: React.FC = () => {
     (state: RootState) => state.loginForm,
   );
   const clickHandler = () => {
-    if(!isAuth) dispatch(toggleLoginForm({ isLoginFormOpen: true }));
+    if (!isAuth) dispatch(toggleLoginForm({ isLoginFormOpen: true }));
     if (isAuth) {
       localStorage.setItem('jwt-token', 'false');
       dispatch(setIsAuth(false));
-      if (currentLocation() === '/profile' || currentLocation() === '/weather') {
+      if (
+        currentLocation() === '/profile' ||
+        currentLocation() === '/weather'
+      ) {
         warning();
         history.push('/login');
       }

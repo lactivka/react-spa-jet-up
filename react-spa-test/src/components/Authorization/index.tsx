@@ -23,19 +23,21 @@ const Authorization: React.FC = () => {
     wrapperCol: { offset: 8, span: 10 },
   };
 
+  const exitBtnClickHandler = () => {
+    dispatch(toggleLoginForm({ isLoginFormOpen: false }));
+  };
+
   const onFinish = (values: string) => {
+    console.log(values);
     localStorage.setItem('jwt-token', 'true');
     success();
     dispatch(setIsAuth(true));
+    exitBtnClickHandler();
     history.goBack();
   };
 
   const onFinishFailed = (errorInfo: ValidateErrorEntity<string>) => {
     error();
-  };
-
-  const exitBtnClickHandler = () => {
-    dispatch(toggleLoginForm({ isLoginFormOpen: false }));
   };
 
   return (
