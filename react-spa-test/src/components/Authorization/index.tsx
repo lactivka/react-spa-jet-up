@@ -1,13 +1,12 @@
 import * as React from 'react';
-import { Form, Input, Button, Checkbox, message } from 'antd';
+import { Form, Input, Button, Checkbox } from 'antd';
 import { ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import './index.scss';
 import { HomeOutlined } from '@ant-design/icons';
-import { Link, Route, Redirect, useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleLoginForm } from 'reducers/loginForm';
-import Home from 'components/Home';
-import emailPattern from '@constants/constants';
+import { emailPattern, error, success } from '@constants/constants';
 import { setIsAuth } from 'reducers/authorization';
 import { RootState } from 'store';
 
@@ -23,23 +22,21 @@ const Authorization: React.FC = () => {
   const tailLayout = {
     wrapperCol: { offset: 8, span: 10 },
   };
-  const success = () => {
-    message.success('Authorized!');
-  };
+
   const onFinish = (values: string) => {
-    console.log('Success:', values);
     localStorage.setItem('jwt-token', 'true');
     success();
     dispatch(setIsAuth(true));
-    history.push('/');
+    history.goBack();
   };
 
   const onFinishFailed = (errorInfo: ValidateErrorEntity<string>) => {
-    console.log('Failed:', errorInfo);
+    error();
   };
-  // const exitBtnClickHandler = () => {
-  //   dispatch(toggleLoginForm({ isLoginFormOpen: false }));
-  // };
+
+  const exitBtnClickHandler = () => {
+    dispatch(toggleLoginForm({ isLoginFormOpen: false }));
+  };
 
   return (
     <Form
@@ -47,7 +44,7 @@ const Authorization: React.FC = () => {
       name="basic"
       initialValues={{ remember: true }}
       onFinish={onFinish}
-      // onFinishFailed={onFinishFailed}
+      onFinishFailed={onFinishFailed}
       className="login-form"
     >
       <Form.Item {...tailLayout} className="exit-item">
@@ -57,7 +54,7 @@ const Authorization: React.FC = () => {
             shape="circle"
             icon={<HomeOutlined />}
             className="login-form-exit-button"
-            // onClick={exitBtnClickHandler}
+            onClick={exitBtnClickHandler}
           />
         </Link>
       </Form.Item>

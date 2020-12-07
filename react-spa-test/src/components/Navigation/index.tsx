@@ -14,18 +14,21 @@ import News from 'components/News';
 import Profile from 'components/Profile';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store';
+import { warning } from '@constants/constants';
 
 const { TabPane } = Tabs;
 
 const Navigation: React.FC = () => {
+  const history = useHistory();
   const location = useLocation();
   const currentLocation = () => location.pathname;
   const isAuth = useSelector((state: RootState) => state.authorization);
-  const warning = () => {
-    message.warning('To visit this page, authorize, please.');
-  };
+
   const callback = (key: string) => {
-    if (key === '/profile' || key === '/weather') warning();
+    if ((key === '/profile' || key === '/weather') && !isAuth) {
+      warning();
+      history.push('/login');
+    }
   };
 
   return (
@@ -65,7 +68,7 @@ const Navigation: React.FC = () => {
         </TabPane>
         <TabPane
           tab={
-            <Link to={isAuth ? '/profile' : '/login'}>
+            <Link to="/profile">
               <span>
                 <StarFilled />
                 Profile
@@ -78,7 +81,7 @@ const Navigation: React.FC = () => {
         </TabPane>
         <TabPane
           tab={
-            <Link to={isAuth ? '/weather' : '/login'}>
+            <Link to="/weather">
               <span>
                 <CloudFilled />
                 Weather
