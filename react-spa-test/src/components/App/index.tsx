@@ -5,13 +5,15 @@ import Navigation from 'components/Navigation';
 import * as React from 'react';
 import './index.scss';
 import Authorization from 'components/Authorization';
-import { useSelector } from 'react-redux';
-import { RootState } from 'store';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import fetchNews from 'requests';
 
 const App: React.FC = () => {
-  const { isLoginFormOpen } = useSelector(
-    (state: RootState) => state.loginForm,
-  );
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchNews());
+  }, []);
 
   return (
     <div className="App">

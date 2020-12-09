@@ -14,7 +14,7 @@ const Home: React.FC = () => {
             <p>We hope you enjoy your stay with us! </p>
           </div>
           <div className="info-part2">
-            <h3>FREE TO JOIN. EASY TO USE</h3>
+            <h3>FREE TO JOIN, EASY TO USE</h3>
             <p>
               See recent news, select news to save in your profile, find out
               weather forecast to every place you want
