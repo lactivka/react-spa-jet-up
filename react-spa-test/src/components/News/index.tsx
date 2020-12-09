@@ -1,16 +1,27 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store';
 import { BackTop, Button, Card, Skeleton, Tooltip } from 'antd';
 import './index.scss';
 import { Link } from 'react-router-dom';
-import { StarOutlined } from '@ant-design/icons';
+import { StarFilled, StarOutlined } from '@ant-design/icons';
+import { NewsItem } from 'reducers/news/models';
+import { addToFavorite, deleteFromFavorite } from 'reducers/news';
 
 const { Meta } = Card;
 
 const News: React.FC = () => {
+  const dispatch = useDispatch();
   const news = useSelector((state: RootState) => state.news.data);
+  const { favorite } = useSelector((state: RootState) => state.news);
   const { loading } = useSelector((state: RootState) => state.news);
+  const isAuth = useSelector((state: RootState) => state.authorization);
+
+  const clickHandler = (newsItem: NewsItem) => {
+    if (favorite.includes(newsItem)) dispatch(deleteFromFavorite(favorite.indexOf(newsItem)));
+    else dispatch(addToFavorite(newsItem));
+  }
+
   return (
     <Skeleton loading={loading} active>
       <div className="news">
@@ -23,10 +34,12 @@ const News: React.FC = () => {
             >
               <div className="news-card">
                 <div className="image-container">
-                  <Tooltip title="Add to favorite">
+                  <Tooltip title={isAuth ? 'Add to favorite' : 'Authorize to select favorite news'}>
                     <Button
-                      icon={<StarOutlined />}
+                      icon={favorite.includes(item) ? <StarFilled className="filled-icon" /> : <StarOutlined />}
                       className="news-favorite-icon"
+                      disabled={!isAuth}
+                      onClick={() => clickHandler(item)}
                     />
                   </Tooltip>
                   <img

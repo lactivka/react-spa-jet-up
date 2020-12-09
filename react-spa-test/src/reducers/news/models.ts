@@ -16,4 +16,5 @@ export interface NewsItem {
   urlToImage: string;
   publishedAt: string;
   content: string;
+  favorite?: boolean;
 }

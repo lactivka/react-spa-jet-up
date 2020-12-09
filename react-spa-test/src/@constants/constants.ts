@@ -8,14 +8,14 @@ export const emailPattern = new RegExp(
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 );
 
-export const error = () => {
+export const error = (): void => {
   message.error('Invalid email or password');
 };
 
-export const warning = () => {
+export const warning = (): void => {
   message.warning('To visit this page, authorize, please.');
 };
 
-export const success = () => {
+export const success = (): void => {
   message.success('Authorized!');
 };

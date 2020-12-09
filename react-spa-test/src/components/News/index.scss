@@ -12,6 +12,9 @@
     top: 0;
     right: 15px;
   }
+  & .filled-icon {
+    color: $favorite-icon;
+  }
 }
 
 .news-card-container {
@@ -25,8 +28,6 @@
 .news-card-title {
   h3 {
     margin-top: 20px;
-    max-height: 65px;
-    overflow: hidden;
     font-size: 20px;
     text-decoration: underline;
     &:hover {
