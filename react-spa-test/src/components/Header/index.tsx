@@ -1,11 +1,10 @@
 import { Button } from 'antd';
 import * as React from 'react';
-import { Link, Route, useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { LoginOutlined } from '@ant-design/icons';
 import './index.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleLoginForm } from 'reducers/loginForm';
-import Authorization from 'components/Authorization';
 import { RootState } from 'store';
 import { setIsAuth } from 'reducers/authorization';
 import { warning } from '@constants/constants';

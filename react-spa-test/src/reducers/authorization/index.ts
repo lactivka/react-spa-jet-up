@@ -1,7 +1,8 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
-const currentState = localStorage.getItem('jwt-token');
-const initialState = currentState === null ? false : JSON.parse(currentState);
+const currentState: string | null = localStorage.getItem('jwt-token');
+const initialState: boolean =
+  currentState === null ? false : JSON.parse(currentState);
 
 const authorizationSlice = createSlice({
   name: 'authorization',

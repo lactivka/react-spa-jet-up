@@ -1,20 +1,20 @@
 import * as React from 'react';
 import { Form, Input, Button, Checkbox } from 'antd';
-import { ValidateErrorEntity } from 'rc-field-form/lib/interface';
+// import { ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import './index.scss';
 import { HomeOutlined } from '@ant-design/icons';
 import { Link, useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { toggleLoginForm } from 'reducers/loginForm';
 import { emailPattern, error, success } from '@constants/constants';
 import { setIsAuth } from 'reducers/authorization';
-import { RootState } from 'store';
+// import { RootState } from 'store';
 
 const Authorization: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   // const [form] = Form.useForm();
-  const isAuth = useSelector((state: RootState) => state.authorization);
+  // const isAuth = useSelector((state: RootState) => state.authorization);
   const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 10 },
@@ -27,8 +27,7 @@ const Authorization: React.FC = () => {
     dispatch(toggleLoginForm({ isLoginFormOpen: false }));
   };
 
-  const onFinish = (values: string) => {
-    console.log(values);
+  const onFinish = (/* values: string */) => {
     localStorage.setItem('jwt-token', 'true');
     success();
     dispatch(setIsAuth(true));
@@ -36,7 +35,7 @@ const Authorization: React.FC = () => {
     history.goBack();
   };
 
-  const onFinishFailed = (errorInfo: ValidateErrorEntity<string>) => {
+  const onFinishFailed = (/* errorInfo: ValidateErrorEntity<string> */) => {
     error();
   };
 

@@ -1,6 +1,7 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import LoginForm from './models';
 
-const initialState = { isLoginFormOpen: false };
+const initialState: LoginForm = { isLoginFormOpen: false };
 
 const loginFormSlice = createSlice({
   name: 'logIn',

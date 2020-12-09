@@ -1,14 +1,11 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store';
-import { BackTop, Button, Card, Skeleton, Tooltip } from 'antd';
+import { BackTop, Button, Skeleton, Tooltip } from 'antd';
 import './index.scss';
-import { Link } from 'react-router-dom';
 import { StarFilled, StarOutlined } from '@ant-design/icons';
 import { NewsItem } from 'reducers/news/models';
 import { addToFavorite, deleteFromFavorite } from 'reducers/news';
-
-const { Meta } = Card;
 
 const News: React.FC = () => {
   const dispatch = useDispatch();
@@ -18,9 +15,10 @@ const News: React.FC = () => {
   const isAuth = useSelector((state: RootState) => state.authorization);
 
   const clickHandler = (newsItem: NewsItem) => {
-    if (favorite.includes(newsItem)) dispatch(deleteFromFavorite(favorite.indexOf(newsItem)));
+    if (favorite.includes(newsItem))
+      dispatch(deleteFromFavorite(favorite.indexOf(newsItem)));
     else dispatch(addToFavorite(newsItem));
-  }
+  };
 
   return (
     <Skeleton loading={loading} active>
@@ -34,9 +32,21 @@ const News: React.FC = () => {
             >
               <div className="news-card">
                 <div className="image-container">
-                  <Tooltip title={isAuth ? 'Add to favorite' : 'Authorize to select favorite news'}>
+                  <Tooltip
+                    title={
+                      isAuth
+                        ? 'Add to favorite'
+                        : 'Authorize to select favorite news'
+                    }
+                  >
                     <Button
-                      icon={favorite.includes(item) ? <StarFilled className="filled-icon" /> : <StarOutlined />}
+                      icon={
+                        favorite.includes(item) ? (
+                          <StarFilled className="filled-icon" />
+                        ) : (
+                          <StarOutlined />
+                        )
+                      }
                       className="news-favorite-icon"
                       disabled={!isAuth}
                       onClick={() => clickHandler(item)}

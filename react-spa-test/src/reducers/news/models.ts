@@ -4,6 +4,12 @@ export interface News {
   loading: boolean;
 }
 
+export interface NewsData {
+  articles: NewsItem[];
+  status: string;
+  totalResults: number;
+}
+
 export interface NewsItem {
   source: {
     id: string;

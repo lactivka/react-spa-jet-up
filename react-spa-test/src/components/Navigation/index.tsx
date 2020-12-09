@@ -24,7 +24,7 @@ const Navigation: React.FC = () => {
   const currentLocation = () => location.pathname;
   const isAuth = useSelector((state: RootState) => state.authorization);
 
-  const callback = (key: string) => {
+  const callback = (key: string): void => {
     if ((key === '/profile' || key === '/weather') && !isAuth) {
       warning();
       history.push('/login');
