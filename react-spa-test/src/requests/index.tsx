@@ -12,7 +12,7 @@ export default createAsyncThunk(
         getHeadlinesForUAurl,
       );
       return response.data.articles;
-    } catch (e: unknown) {
+    } catch (e) {
       // console.log('err in axios');
       return rejectWithValue(e);
     }

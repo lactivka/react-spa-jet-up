@@ -27,7 +27,7 @@ const newsSlice = createSlice({
       state.loading = false;
       state.data = payload;
     });
-    builder.addCase(fetchNews.rejected, (state, { payload }) => {
+    builder.addCase(fetchNews.rejected, (state /* , { payload } */) => {
       state.loading = false;
       // state.error = payload;
     });
