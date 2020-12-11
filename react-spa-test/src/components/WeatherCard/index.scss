@@ -1,0 +1,115 @@
+@import '../../@constants/constants';
+
+.bordered {
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid $white;
+  border-radius: 10px;
+}
+
+.weather-card-container {
+  margin: 15px;
+  background: url('../../assets/blur-blue-gradient.jpg');
+  border-radius: 10px;
+  font-size: 20px;
+  color: $white;
+}
+
+.weather-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px;
+  width: 100%;
+  height: 100%;
+  background-color: $bg-wrapper;
+  border-radius: 10px;
+}
+
+.weather-info-block1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+  & .location-data {
+    margin: 5px 10px 5px;
+  }
+  & .weather-info-main {
+    margin: 5px 10px 5px;
+  }
+  & .location-name {
+    font-size: 45px;
+    font-weight: 600;
+  }
+  & .weather-icon {
+    background: #ffffff33;
+    border-radius: 10px;
+  }
+}
+
+.weather-info-block2 {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  & .temperature-block {
+    width: 100%;
+  }
+  & .weather-current-temperature {
+    font-size: 70px;
+    font-weight: 600;
+  }
+  & .weather-info-additional {
+    width: 100%;
+    line-height: 46px;
+    white-space: pre;
+  }
+  & .weather-feel-temperature {
+    white-space: pre;
+  }
+  & .row {
+    display: flex;
+    max-width: 86%;
+    margin: auto;
+  }
+  .info-text {
+    flex: 50%;
+    text-align: left;
+  }
+  .info-value {
+    flex: 35%;
+    text-align: left;
+  }
+}
+
+@media(max-width: 600px) {
+  .weather-info-block2 {
+    flex-wrap: wrap;
+    & .info-value {
+      flex: 20%
+    }
+  }
+}
+
+@media(max-width: 450px) {
+  .weather-card-container {
+    font-size: 16px;
+  }
+  .weather-info-block1 {
+    .location-data {
+      width: 100%;
+    }
+    & .location-name {
+      width: 100%;
+      max-width: 200px;
+      margin: auto;
+      font-size: 30px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  .weather-info-block2 {
+    & .weather-current-temperature {
+      font-size: 45px;
+    }
+  }
+}

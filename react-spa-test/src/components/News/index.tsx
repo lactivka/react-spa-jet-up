@@ -13,7 +13,12 @@ const News: React.FC = () => {
     <Skeleton loading={loading} active>
       <div className="news">
         {news.map((item) => {
-          return <NewsCard item={item} />;
+          return (
+            <NewsCard
+              item={item}
+              key={`${Date.now() * Math.random()} + ${item.title.slice(10)}`}
+            />
+          );
         })}
       </div>
       <BackTop>

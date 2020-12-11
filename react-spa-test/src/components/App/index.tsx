@@ -7,12 +7,15 @@ import './index.scss';
 import Authorization from 'components/Authorization';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import fetchNews from 'requests';
+import fetchNews, { getCurrentLocation } from 'requests';
+import { getCurrentLocationURL } from '@constants/constants';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchNews());
+    dispatch(getCurrentLocation({ URL: getCurrentLocationURL, dispatch }));
   }, []);
 
   return (

@@ -23,7 +23,7 @@ const NewsCard = ({ item }: NewsCardProps): JSX.Element => {
   };
 
   return (
-    <div className="news-card-container" key={Date.now() * Math.random()}>
+    <div className="news-card-container">
       <div className="news-card">
         <div className="image-container">
           <Tooltip title={iconTooltip}>
