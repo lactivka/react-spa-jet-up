@@ -17,6 +17,7 @@ const initialState: Weather = {
   currentLocation: currentLocationInitialState,
   locationWeather: [],
   loading: false,
+  loadingCity: false,
 };
 
 const weatherSlice = createSlice({
@@ -24,7 +25,7 @@ const weatherSlice = createSlice({
   initialState,
   reducers: {
     deleteLocation: (state, { payload }: PayloadAction<number>) => {
-      state.locationWeather.slice(payload, 1);
+      state.locationWeather.splice(payload, 1);
     },
   },
   extraReducers: (builder) => {
@@ -42,14 +43,15 @@ const weatherSlice = createSlice({
       // state.error = payload;
     });
     builder.addCase(getWeather.pending, (state) => {
-      state.loading = true;
+      state.loadingCity = true;
     });
     builder.addCase(getWeather.fulfilled, (state, { payload }) => {
-      state.loading = false;
-      state.locationWeather.push(payload);
+      state.loadingCity = false;
+      if (state.locationWeather.every((item) => item.id !== payload.id))
+        state.locationWeather.unshift(payload);
     });
     builder.addCase(getWeather.rejected, (state /* , { payload } */) => {
-      state.loading = false;
+      state.loadingCity = false;
       // state.error = payload;
     });
   },

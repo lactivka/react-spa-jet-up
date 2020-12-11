@@ -1,7 +1,42 @@
+@import '../../@constants/constants';
+
 .weather {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+}
+
+.input-city-container {
+  display: flex;
+  width: 100%;
+  & .input-city-form {
+    max-width: 798px;
+    min-height: 80px;
+    margin: auto;
+  }
+}
+
+.tags-container {
+  max-width: 1800px;
+  margin-bottom: 20px;
+  & .city-tag {
+    margin-bottom: 5px;
+    font-size: 16px;
+    border-radius: 10px;
+    background: $bg-tag;
+    border: 1px solid $border-tag;
+  }
+}
+
+
+@media(max-width: 400px) {
+  .input-city-container {
+    display: flex;
+    & .city-input-field {
+      width: 127px;
+    }
+  }
+
 }

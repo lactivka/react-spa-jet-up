@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from 'store';
 import './index.scss';
 import WeatherCardProps from './models';
 
@@ -30,14 +28,16 @@ const WeatherCard = ({ item }: WeatherCardProps): JSX.Element => {
         <div className="weather-info-block2">
           <div className="temperature-block bordered">
             <div className="weather-current-temperature">{`${main.temp} °C`}</div>
-            <div className="weather-feel-temperature">{`feels:    ${main.feels_like} °C`}</div>
+            <div className="weather-feel-temperature">{`feels:    ${Math.round(
+              main.feels_like,
+            )} °C`}</div>
           </div>
           <div className="weather-info-additional bordered">
             <div className="weather-temperature-interval row">
               <span className="info-text"> today:</span>
-              <span className="info-value">{`${main.temp_min.toPrecision(
-                1,
-              )} ... ${main.temp_max.toPrecision(1)} °C`}</span>
+              <span className="info-value">{`${Math.floor(
+                main.temp_min,
+              )} ... ${Math.ceil(main.temp_max)} °C`}</span>
             </div>
             <div className="weather-humidity row">
               <span className="info-text"> humidity:</span>

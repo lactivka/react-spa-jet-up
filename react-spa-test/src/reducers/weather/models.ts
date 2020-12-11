@@ -58,4 +58,5 @@ export interface Weather {
   currentLocation: IPInfoData;
   locationWeather: OWMData[];
   loading: boolean;
+  loadingCity: boolean;
 }

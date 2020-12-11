@@ -8,6 +8,7 @@
 }
 
 .weather-card-container {
+  width: 40%;
   margin: 15px;
   background: url('../../assets/blur-blue-gradient.jpg');
   border-radius: 10px;
@@ -39,6 +40,7 @@
   & .location-name {
     font-size: 45px;
     font-weight: 600;
+    word-break: break-all;
   }
   & .weather-icon {
     background: #ffffff33;
@@ -80,18 +82,49 @@
   }
 }
 
+@media(max-width: 1500px) {
+  .weather-card-container {
+    width: 55%;
+  }
+}
+
+@media(max-width: 1000px) {
+  .weather-card-container {
+    width: 70%;
+  }
+  .weather-info-block2 {
+    & .weather-current-temperature {
+      font-size: 50px;
+    }
+  }
+}
+
 @media(max-width: 600px) {
+  .weather-card-container {
+    width: 85%;
+  }
+  .weather-info-block1 {
+    & .location-name {
+      font-size: 30px;
+    }
+  }
   .weather-info-block2 {
     flex-wrap: wrap;
     & .info-value {
       flex: 20%
     }
   }
+  .weather-info-block2 {
+    & .weather-current-temperature {
+      font-size: 45px;
+    }
+  }
 }
 
 @media(max-width: 450px) {
   .weather-card-container {
-    font-size: 16px;
+    width: 100%;
+    font-size: 14px;
   }
   .weather-info-block1 {
     .location-data {
@@ -99,9 +132,9 @@
     }
     & .location-name {
       width: 100%;
-      max-width: 200px;
+      max-width: 175px;
       margin: auto;
-      font-size: 30px;
+      font-size: 25px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -109,7 +142,7 @@
   }
   .weather-info-block2 {
     & .weather-current-temperature {
-      font-size: 45px;
+      font-size: 30px;
     }
   }
 }
