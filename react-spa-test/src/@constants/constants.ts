@@ -25,10 +25,10 @@ export const API_IPINFO_TOKEN = '6e5d44f10d77f2';
 export const getCurrentLocationURL = `https://ipinfo.io/json?token=${API_IPINFO_TOKEN}&geo`;
 
 export const getWeatherByCityURL = (city: string): string =>
-  `weather?q=${city}&units=metric&appid=${API_OWM_KEY}`;
+  `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_OWM_KEY}`;
 
 export const getWeatherByCoordURL = (lat: string, lon: string): string =>
-  `weather?lat=${lat}&units=metric&lon=${lon}&appid=${API_OWM_KEY}`;
+  `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&units=metric&lon=${lon}&appid=${API_OWM_KEY}`;
 
 export const emailPattern = new RegExp(
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
