@@ -2,7 +2,12 @@ import axios from 'axios';
 import { NewsItem } from 'reducers/news/models';
 
 export default axios.create({
-  baseURL: 'https://newsapi.org/v2/',
+  baseURL: 'http://newsapi.org/v2/',
+  responseType: 'json',
+});
+
+export const axiosWeather = axios.create({
+  baseURL: 'http://api.openweathermap.org/data/2.5/',
   responseType: 'json',
 });
 
@@ -17,3 +22,5 @@ export const defineTooltip = (
   }
   return 'Authorize to select favorite news';
 };
+
+export class CustomError extends Error {}

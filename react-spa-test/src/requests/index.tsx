@@ -12,7 +12,7 @@ import { AxiosError, AxiosResponse } from 'axios';
 import { Dispatch } from 'react';
 import { NewsData } from 'reducers/news/models';
 import { IPInfoData, OWMData } from 'reducers/weather/models';
-import axios from '../utils';
+import axios, { axiosWeather } from '../utils';
 
 export default createAsyncThunk(
   'news/fetchNews',
@@ -33,7 +33,7 @@ export const getWeather = createAsyncThunk(
   'weather/getWeather',
   async (URL: string, { rejectWithValue }) => {
     try {
-      const response: AxiosResponse<OWMData> = await axios.get(URL);
+      const response: AxiosResponse<OWMData> = await axiosWeather.get(URL);
       return response.data;
     } catch (e: unknown) {
       const err = e as AxiosError<OWMData>;
@@ -60,7 +60,7 @@ export const getCurrentLocation = createAsyncThunk(
     { rejectWithValue },
   ) => {
     try {
-      const { data }: { data: IPInfoData } = await axios.get(URL);
+      const { data }: { data: IPInfoData } = await axiosWeather.get(URL);
       const [lat, lon] = data.loc.split(',');
       const reqURL = getWeatherByCoordURL(lat, lon);
       dispatch(getWeather(reqURL));

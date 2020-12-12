@@ -4,7 +4,7 @@
   "private": true,
   "description": "React/Redux SPA. Test project",
   "author": "Oksana Stepanenko",
-  "homepage": "https://oksana-stepanenko-react-redux-test.netlify.app/",
+  "homepage": "https://oksana-stepanenko-react-redux-spa.netlify.app/",
   "lint-staged": {
     "*.{ts,tsx}": [
       "npm run lint"
