@@ -8,7 +8,7 @@ import {
   SEARCHING_LOCATION_ERROR,
 } from '@constants/constants';
 import { AsyncThunkAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { AxiosResponse } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 import { Dispatch } from 'react';
 import { NewsData } from 'reducers/news/models';
 import { IPInfoData, OWMData } from 'reducers/weather/models';
@@ -22,7 +22,7 @@ export default createAsyncThunk(
         getHeadlinesForUAurl,
       );
       return response.data.articles;
-    } catch (e) {
+    } catch (e: unknown) {
       modalError(NEWS_ERROR);
       return rejectWithValue(NEWS_ERROR);
     }
@@ -35,8 +35,10 @@ export const getWeather = createAsyncThunk(
     try {
       const response: AxiosResponse<OWMData> = await axios.get(URL);
       return response.data;
-    } catch (e) {
-      if (e.response.status === 404) modalError(SEARCHING_LOCATION_ERROR);
+    } catch (e: unknown) {
+      const err = e as AxiosError<OWMData>;
+      if (err.response && err.response.status === 404)
+        modalError(SEARCHING_LOCATION_ERROR);
       else modalError(WEATHER_ERROR);
       return rejectWithValue(WEATHER_ERROR);
     }
@@ -63,7 +65,7 @@ export const getCurrentLocation = createAsyncThunk(
       const reqURL = getWeatherByCoordURL(lat, lon);
       dispatch(getWeather(reqURL));
       return data;
-    } catch (e) {
+    } catch (e: unknown) {
       modalError(CURRENT_LOCATION_ERROR);
       return rejectWithValue(CURRENT_LOCATION_ERROR);
     }
