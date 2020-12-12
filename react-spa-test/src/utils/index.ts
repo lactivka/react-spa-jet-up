@@ -2,7 +2,6 @@ import axios from 'axios';
 import { NewsItem } from 'reducers/news/models';
 
 export default axios.create({
-  baseURL: 'https://newsapi.org/v2/',
   responseType: 'json',
 });
 

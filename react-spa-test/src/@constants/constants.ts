@@ -16,7 +16,7 @@ export const SEARCHING_LOCATION_ERROR =
 
 export const API_NEWS_KEY = '144ef1280a9f452b91b552e92d353028';
 
-export const getHeadlinesForUAurl = `top-headlines?country=ua&apiKey=${API_NEWS_KEY}`;
+export const getHeadlinesForUAurl = `https://newsapi.org/v2/top-headlines?country=ua&apiKey=${API_NEWS_KEY}`;
 
 export const API_OWM_KEY = '3f74331d3a059d7d629d84e741317f30';
 
