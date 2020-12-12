@@ -36,11 +36,8 @@ const weatherSlice = createSlice({
       state.loading = false;
       state.currentLocation = payload;
     });
-    builder.addCase(getCurrentLocation.rejected, (
-      state /* , { payload } */,
-    ) => {
+    builder.addCase(getCurrentLocation.rejected, (state) => {
       state.loading = false;
-      // state.error = payload;
     });
     builder.addCase(getWeather.pending, (state) => {
       state.loadingCity = true;
@@ -50,9 +47,8 @@ const weatherSlice = createSlice({
       if (state.locationWeather.every((item) => item.id !== payload.id))
         state.locationWeather.unshift(payload);
     });
-    builder.addCase(getWeather.rejected, (state /* , { payload } */) => {
+    builder.addCase(getWeather.rejected, (state) => {
       state.loadingCity = false;
-      // state.error = payload;
     });
   },
 });

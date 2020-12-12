@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store';
-import { BackTop, Skeleton } from 'antd';
+import { BackTop, Empty, Skeleton } from 'antd';
 import './index.scss';
 import NewsCard from 'components/NewsCard';
 
@@ -12,14 +12,16 @@ const News: React.FC = () => {
   return (
     <Skeleton loading={loading} active>
       <div className="news">
-        {news.map((item) => {
-          return (
-            <NewsCard
-              item={item}
-              key={`${Date.now() * Math.random()} + ${item.title.slice(10)}`}
-            />
-          );
-        })}
+        {news.length > 0 &&
+          news.map((item) => {
+            return (
+              <NewsCard
+                item={item}
+                key={`${Date.now() * Math.random()} + ${item.title.slice(10)}`}
+              />
+            );
+          })}
+        {news.length === 0 && <Empty description="No news" />}
       </div>
       <BackTop>
         <div className="backtop-button">UP</div>

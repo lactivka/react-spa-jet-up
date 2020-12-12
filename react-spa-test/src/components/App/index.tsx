@@ -21,14 +21,12 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <Header />
-      {/* <main> */}
       <div className="main-content">
         <Switch>
           <Route path="/login" component={Authorization} />
           <Navigation />
         </Switch>
       </div>
-      {/* </main> */}
       <Footer />
     </div>
   );
