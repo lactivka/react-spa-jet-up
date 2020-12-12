@@ -13,7 +13,7 @@ const NewsCard = ({ item }: NewsCardProps): JSX.Element => {
   const dispatch = useDispatch();
   const { favorite } = useSelector((state: RootState) => state.news);
   const isAuth = useSelector((state: RootState) => state.authorization);
-  const publishDate = item.publishedAt.split('T');
+  const publishDate = item.published_at.split('T');
   const iconTooltip = defineTooltip(isAuth, favorite, item);
 
   const clickHandler = (newsItem: NewsItem) => {
@@ -40,11 +40,7 @@ const NewsCard = ({ item }: NewsCardProps): JSX.Element => {
               onClick={() => clickHandler(item)}
             />
           </Tooltip>
-          <img
-            src={item.urlToImage}
-            alt={item.source.name}
-            className="news-image"
-          />
+          <img src={item.image} alt={item.source} className="news-image" />
         </div>
         <a
           href={item.url}
@@ -57,20 +53,20 @@ const NewsCard = ({ item }: NewsCardProps): JSX.Element => {
           </Tooltip>
         </a>
         <div className="source-info">
-          {item.source.name.includes('.') ? (
+          {item.source.includes('.') ? (
             <a
-              href={`https://www.${item.source.name}`}
+              href={`https://www.${item.source}`}
               target="_blank"
               rel="noreferrer"
             >
-              <p className="author">{item.source.name}</p>
+              <p className="author">{item.source}</p>
             </a>
           ) : (
-            <p className="author">{item.source.name}</p>
+            <p className="author">{item.source}</p>
           )}
           <p className="news-publish-date">{`${
             publishDate[0]
-          } / ${publishDate[1].slice(0, -1)}`}</p>
+          } / ${publishDate[1].slice(0, -8)}`}</p>
         </div>
         <p className="news-description">{item.description}</p>
       </div>

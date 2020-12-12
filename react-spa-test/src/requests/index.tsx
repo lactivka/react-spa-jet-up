@@ -10,7 +10,7 @@ import {
 import { AsyncThunkAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError, AxiosResponse } from 'axios';
 import { Dispatch } from 'react';
-import { NewsData } from 'reducers/news/models';
+import { NewsItem } from 'reducers/news/models';
 import { IPInfoData, OWMData } from 'reducers/weather/models';
 import axios from '../utils';
 
@@ -18,10 +18,10 @@ export default createAsyncThunk(
   'news/fetchNews',
   async (_, { rejectWithValue }) => {
     try {
-      const response: AxiosResponse<NewsData> = await axios.get(
-        getHeadlinesForUAurl,
-      );
-      return response.data.articles;
+      const {
+        data: { data },
+      }: { data: { data: NewsItem[] } } = await axios.get(getHeadlinesForUAurl);
+      return data;
     } catch (e: unknown) {
       modalError(NEWS_ERROR);
       return rejectWithValue(NEWS_ERROR);

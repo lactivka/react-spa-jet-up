@@ -14,9 +14,9 @@ export const WEATHER_ERROR =
 export const SEARCHING_LOCATION_ERROR =
   'Location not found. Please, input correct name.';
 
-export const API_NEWS_KEY = '144ef1280a9f452b91b552e92d353028';
+export const API_NEWS_KEY = 'a35ecfb4117641a4a0db22d798006b86';
 
-export const getHeadlinesForUAurl = `https://newsapi.org/v2/top-headlines?country=ua&apiKey=${API_NEWS_KEY}`;
+export const getHeadlinesForUAurl = `http://api.mediastack.com/v1/news?access_key=${API_NEWS_KEY}&countries=ua`;
 
 export const API_OWM_KEY = '3f74331d3a059d7d629d84e741317f30';
 

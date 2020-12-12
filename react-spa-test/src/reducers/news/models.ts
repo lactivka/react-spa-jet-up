@@ -5,22 +5,34 @@ export interface News {
 }
 
 export interface NewsData {
-  articles: NewsItem[];
-  status: string;
+  data: NewsItem[];
+  status: number;
   totalResults: number;
+  [x: string]: unknown;
 }
 
 export interface NewsItem {
-  source: {
-    id: string;
-    name: string;
-  };
+  // source: {
+  //   id: string;
+  //   name: string;
+  // };
+  // author: string;
+  // title: string;
+  // description: string;
+  // url: string;
+  // urlToImage: string;
+  // publishedAt: string;
+  // content: string;
+  // favorite?: boolean;
   author: string;
-  title: string;
+  category: string;
+  country: string;
   description: string;
+  image: string;
+  language: string;
+  published_at: string;
+  source: string;
+  title: string;
   url: string;
-  urlToImage: string;
-  publishedAt: string;
-  content: string;
   favorite?: boolean;
 }
