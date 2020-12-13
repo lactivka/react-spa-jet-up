@@ -6,7 +6,7 @@ export interface News {
 }
 
 export interface NewsData {
-  data: NewsItem[];
+  articles: NewsItem[];
   status: number;
   totalResults: number;
   [x: string]: unknown;
@@ -20,9 +20,6 @@ export interface NewsItem {
   author: string | null;
   title: string;
   description: string;
-  image: string;
-  language: string;
-  published_at: string;
   url: string;
   urlToImage: string;
   publishedAt: string;
