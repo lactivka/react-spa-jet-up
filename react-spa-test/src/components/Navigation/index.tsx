@@ -18,16 +18,21 @@ import { warning } from '@constants/constants';
 
 const { TabPane } = Tabs;
 
-const Navigation: React.FC = () => {
+const Navigation = ({
+  setPath,
+}: {
+  setPath: React.Dispatch<React.SetStateAction<string>>;
+}): JSX.Element => {
   const history = useHistory();
   const location = useLocation();
   const currentLocation = () => location.pathname;
   const isAuth = useSelector((state: RootState) => state.authorization);
 
   const callback = (key: string): void => {
+    setPath(key);
     if ((key === '/profile' || key === '/weather') && !isAuth) {
       warning();
-      history.push('/login');
+      history.replace('/login');
     }
   };
 

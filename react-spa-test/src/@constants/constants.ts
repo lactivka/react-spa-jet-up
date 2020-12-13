@@ -3,7 +3,7 @@ import { message, Modal } from 'antd';
 export const FETCH_ERROR = 'Ooops! An error occurred! Try again later.';
 
 export const NEWS_ERROR =
-  "Something went wrong. We can't get recent news. And saved news are shown.";
+  "Something went wrong. We can't get recent news from resource and show you saved news.";
 
 export const CURRENT_LOCATION_ERROR =
   "Ooops! An error occurred! We can't define current location. Try input city and search.";

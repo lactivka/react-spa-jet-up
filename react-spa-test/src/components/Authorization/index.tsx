@@ -8,7 +8,7 @@ import { toggleLoginForm } from 'reducers/loginForm';
 import { emailPattern, error, success } from '@constants/constants';
 import { setIsAuth } from 'reducers/authorization';
 
-const Authorization: React.FC = () => {
+const Authorization = ({ path }: { path: string }): JSX.Element => {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -29,10 +29,10 @@ const Authorization: React.FC = () => {
     success();
     dispatch(setIsAuth(true));
     exitBtnClickHandler();
-    history.goBack();
+    history.push(path);
   };
 
-  const onFinishFailed = (/* errorInfo: ValidateErrorEntity<string> */) => {
+  const onFinishFailed = () => {
     error();
   };
 

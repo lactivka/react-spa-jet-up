@@ -5,13 +5,14 @@ import Navigation from 'components/Navigation';
 import * as React from 'react';
 import './index.scss';
 import Authorization from 'components/Authorization';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import fetchNews, { getCurrentLocation } from 'requests';
 import { getCurrentLocationURL } from '@constants/constants';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
+  const [path, setPath] = useState('/');
 
   useEffect(() => {
     dispatch(fetchNews());
@@ -23,8 +24,10 @@ const App: React.FC = () => {
       <Header />
       <div className="main-content">
         <Switch>
-          <Route path="/login" component={Authorization} />
-          <Navigation />
+          <Route path="/login">
+            <Authorization path={path} />
+          </Route>
+          <Navigation setPath={setPath} />
         </Switch>
       </div>
       <Footer />
