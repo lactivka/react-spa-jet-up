@@ -1,0 +1,18 @@
+@import '../../@constants/constants';
+
+.news {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.backtop-button {
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  border-radius: 4px;
+  background-color: $theme-color2;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+};

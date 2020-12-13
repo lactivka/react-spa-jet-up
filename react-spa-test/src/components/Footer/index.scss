@@ -1,0 +1,8 @@
+@import '../../@constants/constants';
+
+footer {
+  @extend %layout-bg-style;
+  padding: 11px 50px;
+  text-align: end;
+  font-weight: 500;
+}

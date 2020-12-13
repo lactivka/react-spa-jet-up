@@ -1,0 +1,17 @@
+$layout-bg: #ffffffcc;
+$header-text: #3a63b9;
+$white: #ffffff;
+$light-text:  #8d8d8d;
+$theme-color1: #ff7e33;
+$theme-color2: #185db8;
+$favorite-icon: #ffd700;
+$bg-wrapper: #0000001a;
+$bg-tag: #ff7e334d;
+$border-tag: #ff7e33;
+
+%layout-bg-style {
+  margin: 10px auto;
+  background: $layout-bg;
+  max-width: 1900px;
+  border-radius: 10px;
+}
