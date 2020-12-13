@@ -2,6 +2,7 @@ export interface News {
   data: NewsItem[];
   favorite: NewsItem[];
   loading: boolean;
+  error: string | null | unknown;
 }
 
 export interface NewsData {
@@ -12,27 +13,19 @@ export interface NewsData {
 }
 
 export interface NewsItem {
-  // source: {
-  //   id: string;
-  //   name: string;
-  // };
-  // author: string;
-  // title: string;
-  // description: string;
-  // url: string;
-  // urlToImage: string;
-  // publishedAt: string;
-  // content: string;
-  // favorite?: boolean;
-  author: string;
-  category: string;
-  country: string;
+  source: {
+    id: string | null;
+    name: string;
+  };
+  author: string | null;
+  title: string;
   description: string;
   image: string;
   language: string;
   published_at: string;
-  source: string;
-  title: string;
   url: string;
+  urlToImage: string;
+  publishedAt: string;
+  content: string | null;
   favorite?: boolean;
 }

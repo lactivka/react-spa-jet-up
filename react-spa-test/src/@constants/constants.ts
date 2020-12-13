@@ -3,13 +3,13 @@ import { message, Modal } from 'antd';
 export const FETCH_ERROR = 'Ooops! An error occurred! Try again later.';
 
 export const NEWS_ERROR =
-  "Ooops! An error occurred! Can't get recent news. Try again later.";
+  "Something went wrong. We can't get recent news. And saved news are shown.";
 
 export const CURRENT_LOCATION_ERROR =
-  "Ooops! An error occurred! Can't get current location. Try again later.";
+  "Ooops! An error occurred! We can't define current location. Try input city and search.";
 
 export const WEATHER_ERROR =
-  "Ooops! An error occurred! Can't get weather for that location. Try again later.";
+  "Ooops! An error occurred! Can't get weather for location. Try again or back later.";
 
 export const SEARCHING_LOCATION_ERROR =
   'Location not found. Please, input correct name.';
@@ -18,7 +18,7 @@ export const API_NEWS_KEY = 'a35ecfb4117641a4a0db22d798006b86';
 
 export const getHeadlinesForUAurl = `http://api.mediastack.com/v1/news?access_key=${API_NEWS_KEY}&countries=ua`;
 
-export const API_OWM_KEY = '3f74331d3a059d7d629d84e741317f30';
+export const API_OWM_KEY = '3f74331d3a059d7d629d84e741317f3';
 
 export const API_IPINFO_TOKEN = '6e5d44f10d77f2';
 
@@ -49,6 +49,13 @@ export const success = (): void => {
 export const modalError = (e: string): void => {
   Modal.error({
     title: 'Error',
+    content: e,
+  });
+};
+
+export const modalWarning = (e: string): void => {
+  Modal.warning({
+    title: 'Oooops!',
     content: e,
   });
 };

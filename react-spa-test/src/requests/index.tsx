@@ -1,7 +1,6 @@
 import {
   getHeadlinesForUAurl,
   getWeatherByCoordURL,
-  modalError,
   WEATHER_ERROR,
   CURRENT_LOCATION_ERROR,
   NEWS_ERROR,
@@ -23,7 +22,6 @@ export default createAsyncThunk(
       }: { data: { data: NewsItem[] } } = await axios.get(getHeadlinesForUAurl);
       return data;
     } catch (e: unknown) {
-      modalError(NEWS_ERROR);
       return rejectWithValue(NEWS_ERROR);
     }
   },
@@ -38,8 +36,9 @@ export const getWeather = createAsyncThunk(
     } catch (e: unknown) {
       const err = e as AxiosError<OWMData>;
       if (err.response && err.response.status === 404)
-        modalError(SEARCHING_LOCATION_ERROR);
-      else modalError(WEATHER_ERROR);
+        // modalError(SEARCHING_LOCATION_ERROR);
+        return rejectWithValue(SEARCHING_LOCATION_ERROR);
+      // else modalError(WEATHER_ERROR);
       return rejectWithValue(WEATHER_ERROR);
     }
   },
@@ -66,7 +65,7 @@ export const getCurrentLocation = createAsyncThunk(
       dispatch(getWeather(reqURL));
       return data;
     } catch (e: unknown) {
-      modalError(CURRENT_LOCATION_ERROR);
+      // modalError(CURRENT_LOCATION_ERROR);
       return rejectWithValue(CURRENT_LOCATION_ERROR);
     }
   },
