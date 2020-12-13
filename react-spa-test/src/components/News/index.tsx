@@ -1,13 +1,27 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store';
 import { BackTop, Empty, Skeleton } from 'antd';
 import './index.scss';
 import NewsCard from 'components/NewsCard';
+import staticData from '@constants/news_static_data';
+import { modalWarning } from '@constants/constants';
+import { useEffect } from 'react';
+import { removeError } from 'reducers/news';
 
 const News: React.FC = () => {
-  const news = useSelector((state: RootState) => state.news.data);
-  const { loading } = useSelector((state: RootState) => state.news);
+  const dispatch = useDispatch();
+  const { data, loading, error } = useSelector(
+    (state: RootState) => state.news,
+  );
+  const news = data.length > 0 ? data : staticData;
+
+  useEffect(() => {
+    if (error !== null) {
+      modalWarning(error as string);
+      dispatch(removeError(null));
+    }
+  });
 
   return (
     <Skeleton loading={loading} active>

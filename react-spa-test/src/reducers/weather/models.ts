@@ -59,4 +59,5 @@ export interface Weather {
   locationWeather: OWMData[];
   loading: boolean;
   loadingCity: boolean;
+  error: null | string | unknown;
 }

@@ -2,6 +2,7 @@ export interface News {
   data: NewsItem[];
   favorite: NewsItem[];
   loading: boolean;
+  error: string | null | unknown;
 }
 
 export interface NewsData {
@@ -12,15 +13,15 @@ export interface NewsData {
 
 export interface NewsItem {
   source: {
-    id: string;
+    id: string | null;
     name: string;
   };
-  author: string;
+  author: string | null;
   title: string;
   description: string;
   url: string;
   urlToImage: string;
   publishedAt: string;
-  content: string;
+  content: string | null;
   favorite?: boolean;
 }

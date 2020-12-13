@@ -1,5 +1,5 @@
 import { SearchOutlined } from '@ant-design/icons';
-import { getWeatherByCityURL } from '@constants/constants';
+import { getWeatherByCityURL, modalError } from '@constants/constants';
 import {
   BackTop,
   Button,
@@ -12,8 +12,9 @@ import {
 } from 'antd';
 import WeatherCard from 'components/WeatherCard';
 import * as React from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteLocation } from 'reducers/weather';
+import { deleteLocation, removeError } from 'reducers/weather';
 import { OWMData } from 'reducers/weather/models';
 import { getWeather } from 'requests';
 import { RootState } from 'store';
@@ -21,10 +22,18 @@ import './index.scss';
 
 const Weather: React.FC = () => {
   const dispatch = useDispatch();
-  const { loading } = useSelector((state: RootState) => state.weather);
-  const { loadingCity } = useSelector((state: RootState) => state.weather);
+  const { loading, loadingCity, error } = useSelector(
+    (state: RootState) => state.weather,
+  );
   const data = useSelector((state: RootState) => state.weather.locationWeather);
   const [form] = Form.useForm();
+
+  useEffect(() => {
+    if (error !== null) {
+      modalError(error as string);
+      dispatch(removeError(null));
+    }
+  });
 
   const onFinish = (values: { 'city-name': string }) => {
     const city = values['city-name'];
